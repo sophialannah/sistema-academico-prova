@@ -1,94 +1,59 @@
-# Sistema Acadêmico — Curso + Aluno
+# AcademicoFrontend
 
-Projeto Full Stack (Spring Boot + Angular) desenvolvido para a avaliação prática de Programação Orientada a Objetos — IFG.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.16.
 
-- **Back-end:** Spring Boot (Java), rodando em `http://localhost:8080`, context path `/sistema-academico`
-- **Front-end:** Angular + Angular Material, rodando em `http://localhost:4200`
+## Development server
 
-## Estrutura
-
-```
-backend/   -> API REST (Curso e Aluno)
-frontend/  -> Aplicação Angular (Curso e Aluno)
-```
-
-## Pré-requisitos
-
-- Java 17+ (o projeto usa Spring Boot 4 / parent 4.0.6)
-- Maven (ou usar o `mvnw` incluído no projeto, se houver)
-- Node.js 18+ e npm
-- Angular CLI (`npm install -g @angular/cli`)
-- PostgreSQL rodando localmente
-
-## 1. Banco de dados
-
-O `application.properties` do back-end está configurado para:
-
-```properties
-spring.datasource.url = jdbc:postgresql://localhost:5432/jdbc
-spring.datasource.username = postgres
-spring.datasource.password = aluno
-```
-
-Crie um banco chamado `jdbc` no PostgreSQL (ou ajuste essas propriedades para o seu ambiente). O Hibernate está com `ddl-auto=update`, então as tabelas (`aluno`, `curso`, `aluno_curso`) são criadas/atualizadas automaticamente ao subir a aplicação.
-
-## 2. Rodando o back-end
-
-Dentro da pasta do projeto back-end:
+To start a local development server, run:
 
 ```bash
-# usando o maven wrapper (se existir)
-./mvnw spring-boot:run
-
-# ou, se tiver o Maven instalado globalmente
-mvn spring-boot:run
-```
-
-A API sobe em `http://localhost:8080/sistema-academico`.
-
-Endpoints disponíveis:
-
-| Método | URL                       | Descrição                     |
-|--------|---------------------------|--------------------------------|
-| GET    | /sistema-academico/cursos | Lista cursos                  |
-| GET    | /sistema-academico/alunos | Lista alunos                  |
-| GET    | /sistema-academico/alunos/{id} | Busca aluno por id       |
-| POST   | /sistema-academico/alunos | Cadastra aluno (201 + Location)|
-| PUT    | /sistema-academico/alunos/{id} | Atualiza aluno            |
-| DELETE | /sistema-academico/alunos/{id} | Remove aluno (204)        |
-
-## 3. Rodando o front-end
-
-Dentro da pasta do projeto front-end:
-
-```bash
-npm install
 ng serve
 ```
 
-A aplicação sobe em `http://localhost:4200`.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-Rotas disponíveis:
+## Code scaffolding
 
-| Rota                    | Componente          |
-|-------------------------|----------------------|
-| /cursos                 | CursoListComponent   |
-| /cursos/novo            | CursoFormComponent   |
-| /cursos/editar/:id      | CursoFormComponent   |
-| /alunos                 | AlunoListComponent   |
-| /alunos/novo            | AlunoFormComponent   |
-| /alunos/editar/:id      | AlunoFormComponent   |
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-## 4. Ordem recomendada para testar
+```bash
+ng generate component component-name
+```
 
-1. Suba o PostgreSQL.
-2. Suba o back-end (`mvn spring-boot:run`) e confirme que não há erros de conexão com o banco.
-3. Suba o front-end (`ng serve`).
-4. Acesse `http://localhost:4200/alunos` no navegador.
-5. Teste cadastrar, editar e excluir um aluno pela interface.
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-## Observações
+```bash
+ng generate --help
+```
 
-- O CORS já está liberado no back-end para `http://localhost:4200` (`@CrossOrigin`), então não é necessário nenhuma configuração extra de proxy no Angular.
-- O campo `idaluno` é gerado automaticamente pelo banco (`@GeneratedValue`), por isso é opcional no model TypeScript (`aluno.ts`).
-- Ao tentar buscar/atualizar um aluno com id inexistente, a API retorna `404 Not Found` (`ResourceNotFoundException`).
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
